@@ -6,6 +6,16 @@
     <title>Arnaud Meriguet</title>
 </head>
 <body>
-    <p>Hello world!</p>
+    <div>
+        <h1><a href="/">Arnaud Meriguet's Blog</a></h1>
+    </div>
+
+    {% for post in posts %}
+    <div>
+        <p>Published: {{post.published_date}}</p>
+        <h2><a href="">{{ post.title }}</a></h2>
+        <p>{{post.text}}</p>
+    </div>
+    {% endfor %}
 </body>
 </html>
