@@ -1,0 +1,47 @@
+
+.pageHeader {
+    background-color: #0026ff;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+}
+.pageHeader h1, .pageHeader h1 a, .pageHeader h1 a:visited, .pageHeader h1 a:active {
+    color: #ffffff;
+    font-size: 36pt;
+    text-decoration: none;
+}
+h1, h2, h3, h4 {
+    font-family: 'Lobster', cursive;
+    color: #000000;
+}
+
+.postTitle{
+    padding-left: 15px;
+}
+.postText {
+    margin-left: 15px;
+}
+.postDate{
+    color: #808080
+}
+.save {
+    float: right;
+}
+.postForm textarea, .postForm input {
+    width: 100%;
+}
+
+.topMenu, .topMenu:hover, .topMenu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+
+.post {
+    margin-bottom: 70px;
+}
+
+.post h2 a, .post h2 a:visited {
+    color: #000000;
+}
+

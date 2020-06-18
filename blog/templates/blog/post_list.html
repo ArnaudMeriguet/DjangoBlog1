@@ -1,21 +1,11 @@
-﻿<!DOCTYPE html>
+﻿{% extends 'blog/base.html' %}
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>Arnaud Meriguet</title>
-</head>
-<body>
-    <div>
-        <h1><a href="/">Arnaud Meriguet's Blog Online</a></h1>
-    </div>
-
+{% block content %}
     {% for post in posts %}
-    <div>
-        <p>Published: {{post.published_date}}</p>
-        <h2><a href="">{{ post.title }}</a></h2>
-        <p>{{post.text}}</p>
-    </div>
+        <div class="post">
+            <h2 class="postTitle"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p class="postText">{{post.text}}</p>
+            <p class="postDate">Published: {{post.published_date}}</p>
+        </div>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
