@@ -3,10 +3,12 @@
 {% block content %}
 
 <h2 id="CVh2">My CV</h2>
+<form method="POST">
+    <input name="skill_text" id="idNewSkill" placeholder="Enter a skill" />{% csrf_token %}
+</form>
 
-<input id="idNewSkill" placeholder="Enter a skill" />
 <table id="idListSkills">
-    
+    <tr><td>{{ new_skill_text }}</td></tr>
 </table>
 
 {% endblock %}

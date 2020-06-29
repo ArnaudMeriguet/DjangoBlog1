@@ -12,6 +12,11 @@ class HomePageTest(TestCase):
 
 class CvPageTest(TestCase):
 
-    def test_cv_page_returns_correct_html(self):
+    def test_cv_page_uses_cv_template(self):
         response= self.client.get('/post/cv/')
         self.assertTemplateUsed(response, 'blog/cv_view.html')
+
+    def test_can_save_a_POST_request(self):
+        response=self.client.post('/post/cv/',data={'skill_text':'A new skill in list'})
+        self.assertIn('A new skill in list', response.content.decode())
+        self.assertTemplateUsed(response,'blog/cv_view.html')
