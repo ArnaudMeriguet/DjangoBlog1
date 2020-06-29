@@ -18,12 +18,10 @@ class NewVisitorTest(unittest.TestCase):
 
         #has "Arnaud Meriguet" in the titel and header
         self.assertIn ('Arnaud Meriguet', self.browser.title)
-        header_text=self.browser.find_elements_by_tag_name('h1').link
-        self.assertEqual('Arnaud Meriguet\'s Blog',header_text)
-        
+
         #has 'CV' in the h2 tag
         cv_h2_text=self.browser.find_element_by_id('CVh2').text
-        self.assertEqual('CV',cv_h2_text)
+        self.assertEqual('My CV',cv_h2_text)
 
         #The user is invited to add a skill to the list
         inputbox=self.browser.find_element_by_id('idNewSkill')
@@ -37,9 +35,9 @@ class NewVisitorTest(unittest.TestCase):
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
 
-        table=self.browser.find_element_by_id('id_list_skills')
-        rows=table.find_element_by_tag_name('tr')
-        self.assertTrue(any(row.text=='Python' for row in rows))
+        table=self.browser.find_element_by_id('idListSkills')
+        rows=table.find_elements_by_tag_name('tr')
+        self.assertTrue(any(row.text=='Python' for row in rows),"New skill did not appear in table")
 
         #the box is still here waiting for more imputs
         #User inputs "Funtional testing"
