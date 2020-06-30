@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.utils import timezone
-from .models import Post
+from .models import Post,Skill
 from .forms import PostForm
 
 # Create your views here.
@@ -41,6 +41,8 @@ def post_edit(request, pk):
     return render(request,'blog/post_edit.html',{'form':form})
 
 def cv_view(request):
-    return render (request,'blog/cv_view.html',{
-        'new_skill_text': request.POST.get('skill_text',''),
-        })
+    if request.method=="POST":
+        Skill.objects.create(text=request.POST['skill_text'])
+        return redirect('/cv/')
+    skills=Skill.objects.all()
+    return render (request,'blog/cv_view.html',{'skills':skills})

@@ -8,7 +8,9 @@
 </form>
 
 <table id="idListSkills">
-    <tr><td>{{ new_skill_text }}</td></tr>
+    {% for skill in skills %}
+    <tr><td>{{ skill.text }}</td></tr>
+    {% endfor %}
 </table>
 
 {% endblock %}
