@@ -3,14 +3,76 @@
 {% block content %}
 
 <h2 id="CVh2">My CV</h2>
-<form method="POST">
-    <input name="skill_text" id="idNewSkill" placeholder="Enter a skill" />{% csrf_token %}
-</form>
 
-<table id="idListSkills">
-    {% for skill in skills %}
-    <tr><td>{{ skill.text }}</td></tr>
-    {% endfor %}
-</table>
+<h3 style="text-align:center;">Arnaud Meriguet</h3>
 
+<div id="textbox">
+    <p class="alignleft">22 rue de la colline<br />Smarves - France<br />86240</p> 
+    <p class="alignright">Mobile: +33786840307<br />Email: marnaudm@gmail.com</p>
+</div>
+<div style="clear:both;"></div>
+<div>
+    <p >Computer science Master student with software engineering experience seeking an internship in software engineering.</p>
+</div>
+
+<div name="edAndWork">
+    <h4 class="category">Education and Qualifications</h4>
+    {% if user.is_authenticated %}
+    <a href="{%url 'cv_education'%}" class="top-menu"><span class="glyphicon glyphicon-plus-sign"></span></a>
+    {% endif %}
+    <table>
+        {% for ed in eds %}
+        <tr>
+            <td>{{ed.year1}} - {% if ed.year2 is not null%} {{ed.year2}} {% else %} present {% endif %}</td>
+            <td><b>{{ed.title}}</b><br />{{ed.details}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h4 class="category">Computer science related Work Experience</h4>
+    {% if user.is_authenticated %}
+    <a href="{%url 'cv_work'%}" class="top-menu"><span class="glyphicon glyphicon-plus-sign"></span></a>
+    {% endif %}
+    <table>
+        {% for work in works %}
+        <tr>
+            <td>{{work.year1}} {% if work.months is not null %}{{work.months}}{% endif %} {% if work.year2 is not null %} - {{work.year2}} {% endif %}</td>
+            <td><b>{{work.title}}</b><br />{{work.details}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div name="skillDiv" >
+    <h4>Skills:</h4>
+    <!--{% if user.is_authenticated %}-->
+    <form method="POST">
+        <input name="skill_text" id="idNewSkill" placeholder="Enter a skill" />{% csrf_token %}
+    </form>
+    <!--{% endif %}-->
+
+    <table id="idListSkills">
+        {% for skill in skills %}
+        <tr><td>{{ skill.text }}</td></tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div name="moreSkills">
+    <h4>Additional</h4>
+    <table>
+        <tr>
+            <td><b>Languages</b></td>
+            <td>- French: proficient<br />
+            - English: proficient</td>
+        </tr>
+        <tr>
+            <td><b>Ancient Vice president of the tea society (University of Birmingham)</b></td>
+            <td>- This helped me improve my teamwork skills and social skills</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Clean Driver's Licence</td>
+        </tr>
+    </table>
+</div>
 {% endblock %}

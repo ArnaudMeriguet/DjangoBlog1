@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.utils import timezone
-from .models import Post,Skill
-from .forms import PostForm
+from .models import Post,Skill,Education,Work
+from .forms import PostForm,edForm,workForm
 
 # Create your views here.
 def post_list(request):
@@ -40,9 +40,36 @@ def post_edit(request, pk):
         form=PostForm(instance=post)
     return render(request,'blog/post_edit.html',{'form':form})
 
+
 def cv_view(request):
     if request.method=="POST":
         Skill.objects.create(text=request.POST['skill_text'])
         return redirect('/cv/')
     skills=Skill.objects.all()
-    return render (request,'blog/cv_view.html',{'skills':skills})
+    eds=Education.objects.all()
+    works=Work.objects.all()
+    return render (request,'blog/cv_view.html',{'skills':skills,'eds':eds,'works':works})
+
+
+def cv_education(request):
+    if request.method=="POST":
+        form=edForm(request.POST)
+        if form.is_valid():
+            ed=form.save(commit=False)
+            ed.save()
+            return redirect('cv_view')
+    else:
+        ed_form=edForm()
+    return render (request,'blog/cv_education.html',{'ed_form':ed_form})
+
+
+def cv_work(request):
+    if request.method=="POST":
+        form=workForm(request.POST)
+        if form.is_valid():
+            work=form.save(commit=False)
+            work.save()
+            return redirect('cv_view')
+    else:
+        work_form=workForm()
+    return render (request,'blog/cv_work.html',{'work_form':work_form})

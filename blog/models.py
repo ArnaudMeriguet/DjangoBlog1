@@ -24,3 +24,16 @@ class Post(models.Model):
 
 class Skill(models.Model):
     text=models.TextField(default='')
+
+class Education(models.Model):
+    year1=models.IntegerField()
+    year2=models.IntegerField()
+    title=models.TextField(default='')
+    details=models.TextField(default='')
+
+class Work(models.Model):
+    year1=models.IntegerField()
+    year2=models.IntegerField()
+    title=models.TextField(default='')
+    details=models.TextField(default='')
+    months=models.TextField(blank=True, null=True)
