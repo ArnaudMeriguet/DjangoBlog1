@@ -29,7 +29,7 @@
                 <a class="btn btn-default" href="{% url 'cv_education_edit' pk=ed.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
                 {% endif %}
             </td>
-            <td><b>{{ed.title}}</b><br />{{ed.details}}</td>
+            <td><b>{{ed.title}}</b><br />{{ed.details|linebreaks}}</td>
         </tr>
         {% endfor %}
     </table>
@@ -46,7 +46,7 @@
                 <a class="btn btn-default" href="{% url 'cv_work_edit' pk=work.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
                 {% endif %}
             </td>
-            <td><b>{{work.title}}</b><br />{{work.details}}</td>
+            <td><b>{{work.title}}</b><br />{{work.details|linebreaks}}</td>
         </tr>
         {% endfor %}
     </table>
