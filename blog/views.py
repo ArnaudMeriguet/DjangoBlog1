@@ -46,8 +46,8 @@ def cv_view(request):
         Skill.objects.create(text=request.POST['skill_text'])
         return redirect('/cv/')
     skills=Skill.objects.all()
-    eds=Education.objects.all()
-    works=Work.objects.all()
+    eds=Education.objects.order_by('-year1')
+    works=Work.objects.order_by('-year1')
     return render (request,'blog/cv_view.html',{'skills':skills,'eds':eds,'works':works})
 
 
