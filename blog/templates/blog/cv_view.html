@@ -54,11 +54,11 @@
 
 <div name="skillDiv" >
     <h4>Skills:</h4>
-    <!--{% if user.is_authenticated %}-->
+    {% if user.is_authenticated %}
     <form method="POST">
         <input name="skill_text" id="idNewSkill" placeholder="Enter a skill" />{% csrf_token %}
     </form>
-    <!--{% endif %}-->
+    {% endif %}
 
     <table id="idListSkills">
         {% for skill in skills %}

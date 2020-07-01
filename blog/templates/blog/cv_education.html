@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
 <h2>Academic experiences</h2>
 
 <form method="post" class="form">
@@ -8,4 +9,7 @@
     {{ed_form.as_p}}
     <button type="submit" class="save btn btn-default" name="edAccept">Save</button>
 </form>
+{% else %}
+<h3>Uh Oh! It seams you do not have the authorisation needed to see the content of this page</h3>
+{% endif %}
 {% endblock %}
