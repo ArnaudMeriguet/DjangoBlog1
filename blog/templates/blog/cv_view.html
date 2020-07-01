@@ -23,7 +23,12 @@
     <table>
         {% for ed in eds %}
         <tr>
-            <td>{{ed.year1}} - {% if ed.year2 is not null%} {{ed.year2}} {% else %} present {% endif %}</td>
+            <td>
+                {{ed.year1}} - {% if ed.year2 is not null%} {{ed.year2}} {% else %} present {% endif %}
+                {% if user.is_authenticated %}
+                <a class="btn btn-default" href="{% url 'cv_education_edit' pk=ed.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                {% endif %}
+            </td>
             <td><b>{{ed.title}}</b><br />{{ed.details}}</td>
         </tr>
         {% endfor %}
@@ -35,7 +40,12 @@
     <table>
         {% for work in works %}
         <tr>
-            <td>{{work.year1}} {% if work.months is not null %}{{work.months}}{% endif %} {% if work.year2 is not null %} - {{work.year2}} {% endif %}</td>
+            <td>
+                {{work.year1}} {% if work.months is not null %}{{work.months}}{% endif %} {% if work.year2 is not null %} - {{work.year2}} {% endif %}
+                {% if user.is_authenticated %}
+                <a class="btn btn-default" href="{% url 'cv_work_edit' pk=work.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                {% endif %}
+            </td>
             <td><b>{{work.title}}</b><br />{{work.details}}</td>
         </tr>
         {% endfor %}

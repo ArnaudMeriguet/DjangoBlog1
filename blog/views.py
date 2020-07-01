@@ -62,6 +62,18 @@ def cv_education(request):
         ed_form=edForm()
     return render (request,'blog/cv_education.html',{'ed_form':ed_form})
 
+def cv_education_edit(request,pk):
+    ed=get_object_or_404(Education,pk=pk)
+    if request.method=="POST":
+        form=edForm(request.POST, instance=ed)
+        if form.is_valid():
+            ed=form.save(commit=False)
+            ed.save()
+            return redirect('cv_view')
+    else:
+        ed_form=edForm(instance=ed)
+    return render (request,'blog/cv_education.html',{'ed_form':ed_form})
+
 
 def cv_work(request):
     if request.method=="POST":
@@ -72,4 +84,16 @@ def cv_work(request):
             return redirect('cv_view')
     else:
         work_form=workForm()
+    return render (request,'blog/cv_work.html',{'work_form':work_form})
+
+def cv_work_edit(request,pk):
+    work=get_object_or_404(Work,pk=pk)
+    if request.method=="POST":
+        form=workForm(request.POST, instance=work)
+        if form.is_valid():
+            work=form.save(commit=False)
+            work.save()
+            return redirect('cv_view')
+    else:
+        work_form=workForm(instance=work)
     return render (request,'blog/cv_work.html',{'work_form':work_form})
